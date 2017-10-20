@@ -11,7 +11,6 @@ import UIKit
 @IBDesignable
 public class ImageKnob: Knob {
     
-   
     @IBInspectable open var totalFrames: Int = 0 {
         didSet {
             createImageArray()
@@ -20,7 +19,6 @@ public class ImageKnob: Knob {
     @IBInspectable open var imageName: String = "knob01_" {
         didSet {
             createImageArray()
-            // setNeedsDisplay()
         }
     }
     
@@ -38,11 +36,7 @@ public class ImageKnob: Knob {
     
     // Draw Frame
     public override func draw(_ rect: CGRect) {
-        if imageArray.count > 0 {
-           imageView.image = imageArray[currentFrame]
-        } else {
-           imageView.image = UIImage(named: "\(imageName)0")
-        }
+        imageView.image = imageArray[currentFrame]
     }
   
     // Init / Lifecycle
@@ -58,7 +52,6 @@ public class ImageKnob: Knob {
         imageView = UIImageView(image: image)
         imageView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
         self.addSubview(imageView)
-       
     }
     
     // Create Image Array
