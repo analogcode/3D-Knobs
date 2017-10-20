@@ -6,4 +6,3 @@ PaintCode file is included in main directory
 
 
 
-![knob in ib](https://i.imgflip.com/1svkul.gif)
