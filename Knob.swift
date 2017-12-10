@@ -13,18 +13,19 @@ public class Knob: UIView {
 
     var callback: (Double)->Void = { _ in }
     
-    var minimum = 0.0 {
+    @IBInspectable var minimum: Double = 0.0 {
         didSet {
-            self.knobValue = CGFloat((value - minimum) / (maximum - minimum))
-        }
-    }
-    var maximum = 1.0 {
-        didSet {
-            self.knobValue = CGFloat((value - minimum) / (maximum - minimum))
+          setNeedsDisplay()
         }
     }
 
-    var value: Double = 0.5 {
+    @IBInspectable var maximum: Double = 1.0 {
+        didSet {
+          setNeedsDisplay()
+        }
+    }
+
+    @IBInspectable var value: Double = 0.5 {
           didSet {
             if value > maximum {
                 value = maximum
@@ -32,16 +33,15 @@ public class Knob: UIView {
             if value < minimum {
                 value = minimum
             }
-            self.knobValue = CGFloat((value - minimum) / (maximum - minimum))
+            setNeedsDisplay()
         }
     }
     
     // Knob properties
-    var knobValue: CGFloat = 0.5 {
-        didSet {
-            setNeedsDisplay()
-        }
+    var knobValue: CGFloat {
+        return CGFloat((value - minimum) / (maximum - minimum))
     }
+
     var knobFill: CGFloat = 0
     var knobSensitivity = 0.005
     var lastX: CGFloat = 0
