@@ -14,14 +14,12 @@ public class ImageKnob: Knob {
     @IBInspectable open var totalFrames: Int = 0 {
         didSet {
             createImageArray()
-            setNeedsLayout()
         }
     }
 
     @IBInspectable open var imageName: String = "knob01_" {
         didSet {
             createImageArray()
-            setNeedsLayout()
         }
     }
     
@@ -42,7 +40,7 @@ public class ImageKnob: Knob {
     }
 
     public override func draw(_ rect: CGRect) {
-      super.draw(rect)      
+      super.draw(rect)
       if imageArray.indices.contains(currentFrame) {
         imageView.image = imageArray[currentFrame]
       }
@@ -61,7 +59,6 @@ public class ImageKnob: Knob {
 
     private func commonInit() {
       createImageArray()
-      imageView.image = UIImage(named: "\(imageName)0")
       addSubview(imageView)
     }
 
@@ -69,8 +66,13 @@ public class ImageKnob: Knob {
     func createImageArray() {
         imageArray.removeAll()
         for i in 0..<totalFrames {
-            guard let image = UIImage(named: "\(imageName)\(i)") else { continue }
+            guard let image = UIImage(
+              named: "\(imageName)\(i)",
+              in: Bundle(for: type(of: self)),
+              compatibleWith: traitCollection)
+              else { continue }
             imageArray.append(image)
         }
+        imageView.image = UIImage(named: "\(imageName)\(currentFrame)")
     }
 }
