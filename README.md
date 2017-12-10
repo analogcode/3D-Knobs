@@ -6,9 +6,9 @@ This repo demonstrates using an array of images for a knob. For an example using
 
 ![Knobs](http://audiokitpro.com/images/knob.gif)
 
-The code works. But, IB Designables fails to render in Interface Builder. If anyone knows how to fix that, any hints or Pull Requests would be appreciated. Thanks!
+Thanks to @cemolcay for updating these knobs to render in Interface Builder!
 
-## Easy 2 Step Knobs
+## Easy Image Knobs in 2 Steps
 ![Screenshot1](https://i.imgur.com/LSs17T2.png)
 
 (1) Drop a folder w/ the Knob renders into your assets
@@ -16,4 +16,3 @@ The code works. But, IB Designables fails to render in Interface Builder. If any
 ![Screenshot2](https://i.imgur.com/SRHEaNM.png)
 
 (2) Clicking on the ImageKnob in IB, add the *image name* you want and *total number of frames* for that knob. Then, you're good to go.
-
