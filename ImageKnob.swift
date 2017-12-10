@@ -16,6 +16,7 @@ public class ImageKnob: Knob {
             createImageArray()
         }
     }
+
     @IBInspectable open var imageName: String = "knob01_" {
         didSet {
             createImageArray()
@@ -23,45 +24,55 @@ public class ImageKnob: Knob {
     }
     
     var imageView = UIImageView()
-    var currentFrame = 0
     var imageArray = [UIImage]()
-    
-    // Knob properties
-    override var knobValue: CGFloat {
-        didSet {
-           currentFrame = Int(Double(knobValue) * Double(totalFrames))
-           setNeedsDisplay()
-        }
+
+    var currentFrame: Int {
+      return Int(Double(knobValue) * Double(totalFrames))
     }
-    
-    // Draw Frame
+
+    public override func layoutSubviews() {
+      super.layoutSubviews()
+      imageView.frame = CGRect(
+        x: 0,
+        y: 0,
+        width: self.bounds.width,
+        height: self.bounds.height)
+    }
+
     public override func draw(_ rect: CGRect) {
+      super.draw(rect)
+      if imageArray.indices.contains(currentFrame) {
         imageView.image = imageArray[currentFrame]
-    }
+      }
+  }
   
     // Init / Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
+        commonInit()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-       
-        // Add UIImageView
-        let image = UIImage(named: "\(imageName)0")
-        imageView = UIImageView(image: image)
-        imageView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
-        self.addSubview(imageView)
+        commonInit()
     }
-    
+
+    private func commonInit() {
+      createImageArray()
+      addSubview(imageView)
+    }
+
     // Create Image Array
     func createImageArray() {
         imageArray.removeAll()
-        for i in 0...totalFrames {
-            let name = imageName + String(i)
-            let image = UIImage(named: name)
-            imageArray.append(image!)
+        for i in 0..<totalFrames {
+            guard let image = UIImage(
+              named: "\(imageName)\(i)",
+              in: Bundle(for: type(of: self)),
+              compatibleWith: traitCollection)
+              else { continue }
+            imageArray.append(image)
         }
+        imageView.image = UIImage(named: "\(imageName)\(currentFrame)")
     }
-
 }
