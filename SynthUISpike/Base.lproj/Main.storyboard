@@ -51,7 +51,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="totalFrames">
-                                        <integer key="value" value="127"/>
+                                        <integer key="value" value="128"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="imageName" value="knob02_"/>
                                 </userDefinedRuntimeAttributes>
@@ -62,7 +62,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="totalFrames">
-                                        <integer key="value" value="127"/>
+                                        <integer key="value" value="128"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="imageName" value="knob03_"/>
                                 </userDefinedRuntimeAttributes>
@@ -73,7 +73,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="totalFrames">
-                                        <integer key="value" value="127"/>
+                                        <integer key="value" value="128"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="imageName" value="knob04_"/>
                                 </userDefinedRuntimeAttributes>
@@ -84,7 +84,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="totalFrames">
-                                        <integer key="value" value="127"/>
+                                        <integer key="value" value="128"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="imageName" value="knob05_"/>
                                 </userDefinedRuntimeAttributes>

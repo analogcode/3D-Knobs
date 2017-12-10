@@ -14,33 +14,39 @@ public class ImageKnob: Knob {
     @IBInspectable open var totalFrames: Int = 0 {
         didSet {
             createImageArray()
+            setNeedsLayout()
         }
     }
+
     @IBInspectable open var imageName: String = "knob01_" {
         didSet {
             createImageArray()
+            setNeedsLayout()
         }
     }
     
     var imageView = UIImageView()
-    var currentFrame = 0
     var imageArray = [UIImage]()
-    
-    // Knob properties
-    override var knobValue: CGFloat {
-        didSet {
-           currentFrame = Int(Double(knobValue) * Double(totalFrames))
-           setNeedsDisplay()
-        }
+
+    var currentFrame: Int {
+      return Int(Double(knobValue) * Double(totalFrames))
     }
-    
-    // Draw Frame
+
+    public override func layoutSubviews() {
+      super.layoutSubviews()
+      imageView.frame = CGRect(
+        x: 0,
+        y: 0,
+        width: self.bounds.width,
+        height: self.bounds.height)
+    }
+
     public override func draw(_ rect: CGRect) {
+      super.draw(rect)      
       if imageArray.indices.contains(currentFrame) {
         imageView.image = imageArray[currentFrame]
       }
-      super.draw(rect)
-    }
+  }
   
     // Init / Lifecycle
     override init(frame: CGRect) {
@@ -54,13 +60,11 @@ public class ImageKnob: Knob {
     }
 
     private func commonInit() {
-      // Add UIImageView
-      let image = UIImage(named: "\(imageName)0")
-      imageView = UIImageView(image: image)
-      imageView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
-      self.addSubview(imageView)
+      createImageArray()
+      imageView.image = UIImage(named: "\(imageName)0")
+      addSubview(imageView)
     }
-    
+
     // Create Image Array
     func createImageArray() {
         imageArray.removeAll()
@@ -69,5 +73,4 @@ public class ImageKnob: Knob {
             imageArray.append(image)
         }
     }
-
 }
