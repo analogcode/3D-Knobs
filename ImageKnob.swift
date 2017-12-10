@@ -36,31 +36,37 @@ public class ImageKnob: Knob {
     
     // Draw Frame
     public override func draw(_ rect: CGRect) {
+      if imageArray.indices.contains(currentFrame) {
         imageView.image = imageArray[currentFrame]
+      }
+      super.draw(rect)
     }
   
     // Init / Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
+        commonInit()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-       
-        // Add UIImageView
-        let image = UIImage(named: "\(imageName)0")
-        imageView = UIImageView(image: image)
-        imageView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
-        self.addSubview(imageView)
+        commonInit()
+    }
+
+    private func commonInit() {
+      // Add UIImageView
+      let image = UIImage(named: "\(imageName)0")
+      imageView = UIImageView(image: image)
+      imageView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
+      self.addSubview(imageView)
     }
     
     // Create Image Array
     func createImageArray() {
         imageArray.removeAll()
-        for i in 0...totalFrames {
-            let name = imageName + String(i)
-            let image = UIImage(named: name)
-            imageArray.append(image!)
+        for i in 0..<totalFrames {
+            guard let image = UIImage(named: "\(imageName)\(i)") else { continue }
+            imageArray.append(image)
         }
     }
 
